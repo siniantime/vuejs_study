@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.c1{color: red}
+		.c2{color: green}
+	</style>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="n1"></input>+
+		<input type="text" v-model="n2"></input>=
+		<input type="text" v-model="sum"></input>
+	</div>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el:'#app',
+			computed:{
+				/*
+				sum:function () {
+					return this.n1 * 1 + this.n2 *1  ;
+				}
+				*/
+				//ES6写法
+				sum(){
+					return this.n1*1 + this.n2*2;
+				}
+			},
+			data: {
+				n1:0,
+				n2:1
+			}
+		})
+	</script>
+</body>
+</html>

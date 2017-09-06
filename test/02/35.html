@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.error{color: red}
+		.success{color: green}
+		.font{font-size: 100px;}
+	</style>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="axios.js"></script>
+	<script type="text/javascript" src="lodash.js"></script>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	 
+	<!-- 可选的Bootstrap主题文件（一般不使用） -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+	 
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	 
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<form action="" class="form-horizontal"><!--水平表单-->
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">标题</label>
+				<div class="col-sm-10">
+					 <input type="text" class="form-control" v-model="filed.title"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">栏目</label>
+				<div class="col-sm-10">
+					<select v-model="filed.cid" class="form-control">
+						<option value="">==请选择栏目==</option>
+
+						<option v-for="v in category" :value="v.cid">{{v.title}}</option>
+						
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">点击数</label>
+				<div class="col-sm-10">
+					 <input type="text" class="form-control" v-model="filed.click"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">链接</label>
+				<div class="col-sm-10">
+					 <input type="text" class="form-control" v-model="filed.url"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">内容</label>
+				<div class="col-sm-10">
+					<textarea name="" class="form-control" v-model="filed.description"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">类型</label>
+				<div class="col-sm-10 checkbox-inline">
+					<input type="radio" v-model="filed.type" value="draft">草稿</input>
+					<input type="radio" v-model="filed.type" value="send">发布</input>
+				</div>
+				
+			</div>
+			<button class="btn btn-primary col-sm-offset-2">保存数据</button>		
+		</form>
+	</div>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el:'#app',
+			data: {
+				category:[
+					{cid:1,title:'标题一'},
+					{cid:2,title:'标题二'},
+					{cid:3,title:'标题三'},
+					{cid:4,title:'标题四'},
+				],
+				filed:{
+					title:"sup",
+					click:132,
+					url:"baidu.com",
+					description:"内容",
+					type:'draft',
+					flag:[],
+					cid:''
+				}
+			},
+			methods:{
+				handler(){
+					alert('b');
+				},
+			}
+		})
+	</script>
+</body>
+</html>

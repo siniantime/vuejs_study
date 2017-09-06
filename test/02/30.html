@@ -15,17 +15,22 @@
 </head>
 <body>
 	<div id="app">
-		<input type="text" @keyup.ctrl.65="keyEvent"></input>
+		<div :style = 'style' @contextmenu.prevent="handler">
+			
+		</div>
+		<div :style = 'style' @click.middle="handler">
+			
+		</div>
 	</div>
 	
 	<script type="text/javascript">
 		var app = new Vue({
 			el:'#app',
 			data: {
-				
+				style:{border:"solid 1px #ccc", height:"200px"}
 			},
 			methods:{
-				keyEvent(){
+				handler(){
 					alert('b');
 				},
 			}

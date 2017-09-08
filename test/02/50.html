@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="velocity.js"></script>
+</head>
+<body>
+	<div id="app">
+		<button @click="type=!type">切换</button>
+		<transition @before-enter="beforeEnter" @enter="enter" @leave="leave" :css="false">
+			<h1 v-if="type">ssssssssssssss</h1>
+		</transition>
+	</div>
+	
+	<script type="text/javascript">
+		
+		var app = new Vue({
+			el:'#app',
+			data:{
+				type:false
+			},
+			methods:{
+				beforeEnter(el){
+					el.style.opacity=0;
+				},
+				enter(el,done){
+					Velocity(el,{opacity:1},{duration:2000, complete:done})
+				},
+				leave(el,done){
+					Velocity(el,{opacity:0,rotateZ:'-90deg'},{duration:2000,complete:done})
+				}
+			}
+		});
+	</script>
+	
+</body>
+</html>

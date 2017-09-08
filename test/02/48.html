@@ -4,11 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
-	<style type="text/css">
-		.error{color: red}
-		.success{color: green}
-		.font{font-size: 100px;}
-	</style>
+	<link rel="stylesheet" type="text/css" href="animate.css">
 	<script type="text/javascript" src="vue.js"></script>
 	<script type="text/javascript" src="axios.js"></script>
 	<script type="text/javascript" src="lodash.js"></script>
@@ -26,59 +22,21 @@
 </head>
 <body>
 	<div id="app">
-		<sp-news :show-del-button="1"  :lists="goods" @sum="total"></sp-news>
-		总计: {{totalPrice}}
+		<button @click="type=!type">切换</button>
+		<transition  enter-active-class="animated slideInDown" leave-active-class="animated slideOutDown">
+			<h1 v-if="type">s</h1>
+		</transition>
 	</div>
-	<script type="text/x-template" id="spNews">
-		<table border="1" width="80%">
-			<thead>
-				<th>商品名称</th>
-				<th>商品价格</th>
-				<th>商品数量</th>
-			</thead>
-			<tbody>
-				<tr v-for="(v,k) in lists">
-					<td>{{v.title}}</td>
-					<td>{{v.price}}</td>
-					<td>
-						<input type="text" v-model="v.num" @blur="sum"></input>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</script>
+	
 	<script type="text/javascript">
-		var spNews ={
-			template:"#spNews",
-			props:['lists'],
-			methods:{
-				sum(){
-					this.$emit('sum');//向父组件发起请求
-				}
-			}
-		};
+		
 		var app = new Vue({
 			el:'#app',
-			components:{spNews},
-			mounted(){
-				this.total();
-			},
 			data:{
-				totalPrice:0,
-				goods:[
-					{title:'s',price:100,num:1},
-					{title:'p',price:200,num:2},
-				]
-			},
-			methods:{
-				total(){
-					this.totalPrice=0;
-					this.goods.forEach((v)=>{
-						this.totalPrice+=v.num*v.price;
-					})
-				}
+				type:false
 			}
 		});
 	</script>
+	
 </body>
 </html>

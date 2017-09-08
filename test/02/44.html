@@ -26,58 +26,45 @@
 </head>
 <body>
 	<div id="app">
-		<sp-news :show-del-button="1"  :lists="goods" @sum="total"></sp-news>
-		总计: {{totalPrice}}
+		<form class="form-horizontal">
+			<bs-panel>
+				<h1 slot="title">标题</h1>
+				<bs-input title="标题" value="S" slot="body"></bs-input>
+				<bs-input title="标题" value="S" slot="body"></bs-input>
+			</bs-panel>	
+		</form>
 	</div>
-	<script type="text/x-template" id="spNews">
-		<table border="1" width="80%">
-			<thead>
-				<th>商品名称</th>
-				<th>商品价格</th>
-				<th>商品数量</th>
-			</thead>
-			<tbody>
-				<tr v-for="(v,k) in lists">
-					<td>{{v.title}}</td>
-					<td>{{v.price}}</td>
-					<td>
-						<input type="text" v-model="v.num" @blur="sum"></input>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+	<script type="text/x-template" id="bsPanel">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<slot name="title"></slot>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<slot name="body"></slot>
+			</div>
+		</div>		
+	</script>
+	<script type="text/x-template" id="bsInput">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">{{title}}</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" :value="value"></input>
+			</div>
+		</div>
 	</script>
 	<script type="text/javascript">
-		var spNews ={
-			template:"#spNews",
-			props:['lists'],
-			methods:{
-				sum(){
-					this.$emit('sum');//向父组件发起请求
-				}
-			}
+		var bsPanel ={
+			template:"#bsPanel",
+		};
+		var bsInput={
+			template:"#bsInput",
+			props:['title','value']
 		};
 		var app = new Vue({
 			el:'#app',
-			components:{spNews},
-			mounted(){
-				this.total();
-			},
-			data:{
-				totalPrice:0,
-				goods:[
-					{title:'s',price:100,num:1},
-					{title:'p',price:200,num:2},
-				]
-			},
-			methods:{
-				total(){
-					this.totalPrice=0;
-					this.goods.forEach((v)=>{
-						this.totalPrice+=v.num*v.price;
-					})
-				}
-			}
+			components:{bsPanel,bsInput},
 		});
 	</script>
 </body>

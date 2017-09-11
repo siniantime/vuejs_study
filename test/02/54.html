@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-router.js"></script>
+</head>
+<body>
+	<div id="app">
+		<router-link to ="/s">s</router-link>
+		<router-link to ="/u">u</router-link>
+		<router-view></router-view>
+	</div>
+	
+	<script type="text/javascript">
+		const s={
+			template:'<h1>su</h1>'
+		}
+		const u={
+			template:'<h2>u</h2>'
+		}
+		//把组件交给路由
+		var route = new VueRouter({
+			routes:[
+				{path:'/s',component:s},
+				{path:'/u',component:u},
+			]
+		});
+		var app = new Vue({
+			el:'#app',
+			router:route
+		});
+	</script>
+	
+</body>
+</html>

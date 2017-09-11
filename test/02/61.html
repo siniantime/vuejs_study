@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-router.js"></script>
+</head>
+<body>
+	<div id="app">
+		<router-view></router-view>
+	</div>
+
+	<script type="text/x-template" id="home">
+		<div>
+			<li v-for="v in news">
+				<a href="" @click.prevent="go(v.id)">{{v.title}}</a>
+			</li>
+		</div>
+	</script>
+
+	<script type="text/x-template" id="content">
+		<div>
+			<h1>{{field.title}}</h1>
+			<p>
+				{{field.content}}
+			</p>
+			<router-link to="/">返回首页</router-link>
+		</div>
+	</script>
+
+	<script type="text/javascript">
+		var data=[
+				{id:1,title:'123',content:'这是内容……'},
+				{id:2,title:'456',content:'这还是内容……'}
+				{id:2,title:'789',content:'别看了，这还是内容……'}
+			];
+
+		const home = {
+			template:'#home',
+			data(){
+				return{
+					news:data
+				}
+			},
+			methods:{
+				go(id){
+					//alert(id);
+					this.$router.push({name:'content',params:{id:id}});
+				}
+			}
+		}
+
+		const content={
+			template:"#content",
+			data(){
+				return{
+					field:{}
+				}
+			},
+			watch:{
+				'$route'(to,from){
+					this.load();
+				}
+			},
+			mounted(){
+				this.load();
+			},
+			methods:{
+				load(){
+					var id =this.$route.params.id;
+					for(var k=0;k<data.length;k++){
+						if (data[k].id==id) {
+							this.field=data[k];
+						}
+					}
+				}
+			}
+		}
+
+		var routes=[
+			{path:'/',component:home},
+			{path:'/content/:id?',component:content,name:'content'}
+		];
+
+		var router = new VueRouter({routes});
+		var app = new Vue({
+			el:'#app',
+			router
+		});
+	</script>
+	
+</body>
+</html>

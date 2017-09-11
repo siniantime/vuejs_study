@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-router.js"></script>
+</head>
+<body>
+	<div id="app">
+		<router-link to ="/content">s</router-link>
+		<router-view></router-view>
+	</div>
+	<script type="text/x-template" id="content">
+		<div>
+			id:{{id}}
+			<br/>
+			<button @click="show">检测参数</button>
+		</div>
+	</script>
+
+	<script type="text/javascript">
+		const content={
+			template:"#content",
+			data(){
+				return{
+					id:0
+				}
+			},
+			mounted(){
+				this.id = this.$route.params.id;
+				if(!this.id){
+					this.id = 1;
+				}
+			},
+			methods:{
+				show(){
+					console.log(this.$route.params);
+				}
+			}
+		}
+
+		var routes=[
+			{path:'/content/:id?',component:content},
+		];
+
+		var router = new VueRouter({routes});
+		var app = new Vue({
+			el:'#app',
+			router
+		});
+	</script>
+	
+</body>
+</html>

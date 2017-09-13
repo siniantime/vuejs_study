@@ -7,10 +7,12 @@
 	<script type="text/javascript" src="vue.js"></script>
 	<script type="text/javascript" src="vue-router.js"></script>
 	<script type="text/javascript" src="vuex.js"></script>
+	<script type="text/javascript" src="axios.js"></script>
 </head>
 <body>
 	<div id="app">
 		<lists></lists>
+		<footer-cart></footer-cart>
 	</div>
 	
 	<script type="text/x-template" id="Lists">
@@ -22,6 +24,7 @@
 					<th>价格</th>
 					<th>数量</th>
 					<th>总计</th>
+					<th>操作</th>
 				</tr>
 				<tr v-for="v in goods">
 					<td>{{v.id}}</td>
@@ -31,12 +34,21 @@
 						<input type="text" v-model="v.num"></input>
 					</td>
 					<td>{{v.totalPrice}}</td>
+					<td>
+						<button @click="del(v.id)">删除</button>
+					</td>
 				</tr>
 			</table>
-			<h1>总价：{{totalPrice}}</h1>
+			
 		</div>
 	</script>
 
+	<script type="text/x-template" id="footerCart">
+		<div>
+			总价：{{totalPrice}}
+		</div>
+	</script>
+		
 	<script type="text/javascript">
 		var store = new Vuex.Store({
 			state:{
@@ -61,18 +73,53 @@
 					})
 					return goods;
 				}
-			}
+			},
+			mutations:{
+				//删除购物车中的商品
+				del(state,param){
+					var k;
+					for(var i=0; i<state.goods.length;i++){
+						if (state.goods[i].id==param.id) {
+							k=i;break;
+						}
+					}
+					state.goods.splice(k,1);
+				}
+			},
+
 		}); 
 
 		var Lists = {
 			template:'#Lists',
 			computed:{
-				totalPrice(){
-					return this.$store.getters.totalPrice;
-				},
 				goods(){
 					return this.$store.getters.goods;
 				}
+			},
+			methods:{
+				del(id){
+					this.$store.commit('del',{
+						id
+					})
+				}
+			}
+		}
+
+		var footerCart={
+			template:'#footerCart',
+			computed:{
+				totalPrice(){
+					return this.$store.getters.totalPrice;
+				},
+			}
+		}
+
+		actions:{
+			loadGoods(store){
+				axios.get('73.php')
+					.then(fuction(response){
+						console.log(response);
+					});
 			}
 		}
 
@@ -80,7 +127,10 @@
 			el:'#app',
 			store,
 			components:{
-				Lists
+				Lists,footerCart
+			},
+			mounted(){
+				this.$store.dispatch('loadGoods');
 			}
 			
 		});

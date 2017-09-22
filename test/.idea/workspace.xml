@@ -94,7 +94,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/03" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunManager">
@@ -163,11 +163,12 @@
       <workItem from="1504933140431" duration="224000" />
       <workItem from="1504933391708" duration="483000" />
       <workItem from="1504933950062" duration="63000" />
+      <workItem from="1505737039133" duration="90000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2426000" />
+    <option name="totallyTimeSpent" value="2516000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="84" width="1704" height="954" extended-state="0" />

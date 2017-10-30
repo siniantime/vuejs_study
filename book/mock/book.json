@@ -1,0 +1,24 @@
+{
+  "status":"0",
+  "msg":"",
+  "result":[
+    {
+      "bookId":"1001",
+      "bookName":"人性的弱点",
+      "bookAuthor":"卡耐基",
+      "bookImg":"1.jpg"
+    },
+    {
+      "bookId":"1002",
+      "bookName":"围城",
+      "bookAuthor":"钱钟书",
+      "bookImg":"2.jpg"
+    },
+    {
+      "bookId":"1003",
+      "bookName":"老人与海",
+      "bookAuthor":"海明威",
+      "bookImg":"3.jpg"
+    }
+  ]
+}

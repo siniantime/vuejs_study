@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import header from '../components/header/header.vue'
+import BookList from '../views/BookList.vue'
 
 Vue.use(Router)
 
@@ -8,10 +8,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: {
-
-      }
+      component: BookList
     }
   ]
 })

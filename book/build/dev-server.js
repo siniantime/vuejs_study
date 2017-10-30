@@ -22,6 +22,14 @@ const autoOpenBrowser = !!config.dev.autoOpenBrowser
 const proxyTable = config.dev.proxyTable
 
 const app = express()
+
+var router = express.Router();
+var bookData =  require('./../mock/book.json');//加载json数据
+router.get("/book",function (req,res,next) {
+  res.json(bookData);
+});
+app.use(router);
+
 const compiler = webpack(webpackConfig)
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {

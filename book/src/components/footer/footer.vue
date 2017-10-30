@@ -1,17 +1,11 @@
 <template>
   <div class="header">
-    <p>red</p>
-    header
+   <p>footer</p>
   </div>
 </template>
 <script>
 
 </script>
 <style lang="less">
-	.header{
-		color: red;
-		p{
-			color: green;
-		}
-	}
+
 </style>

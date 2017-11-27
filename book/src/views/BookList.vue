@@ -2,17 +2,23 @@
   <div>
     <nav-header></nav-header>
     <nav-bread>
-      <p slot="bread">励志</p>
-      <span slot="test">test</span>
+      <span slot="bread">励志</span>
     </nav-bread>
-    <div>
-      <ul>
-        <li v-for="(item,index) in bookList">
-          <img v-bind:src="'/static/images/'+item.bookImg"/>
-          <div>{{item.bookName}}</div>
-          <div>{{item.bookAuthor}}</div>
-        </li>
-      </ul>
+    <div class="container main">
+      <div class="row">
+        <sider></sider>
+        <div class="col-xs-10">
+          <ul class="row">
+            <li class="col-xs-3" v-for="(item,index) in bookList">
+              <img v-bind:src="'/static/images/'+item.bookImg"/>
+              <div>{{item.bookName}}</div>
+              <div>{{item.bookAuthor}}</div>
+            </li>
+          </ul>
+        </div>
+       
+      </div>
+      
     </div>
     <nav-footer></nav-footer>
   </div>
@@ -21,6 +27,7 @@
   import NavHeader from "./../components/header/header.vue"
   import NavFooter from "./../components/footer/footer.vue"
   import NavBread from  "./../components/navBread/navBread.vue"
+  import sider from "./../components/sider/sider.vue"
   import axios from 'axios'
   export default{
       data(){
@@ -31,7 +38,8 @@
     components:{
         NavHeader,
         NavFooter,
-        NavBread
+        NavBread,
+        sider
     },
     mounted:function () {
       this.getGoodsList();
@@ -47,10 +55,22 @@
   }
 </script>
 <style lang="less">
-  li{
-    padding: 10px;
-    img{
-      width: 235px;
+  body{
+    background: #f4f4f4;
+  }
+  .container{
+    min-width: 1170px;
+  }
+  .main{
+    padding: 15px;
+    min-height: 800px;
+    background: #fff;
+    li{
+      padding: 10px;
+      img{
+        width: 160px;
+      }
     }
   }
+  
 </style>

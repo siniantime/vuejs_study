@@ -19,6 +19,12 @@
       "bookName":"老人与海",
       "bookAuthor":"海明威",
       "bookImg":"3.jpg"
+    },
+     {
+      "bookId":"1004",
+      "bookName":"明朝那些事儿",
+      "bookAuthor":"当年明月",
+      "bookImg":"4.jpg"
     }
   ]
 }
